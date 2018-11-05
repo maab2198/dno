@@ -18,7 +18,8 @@ class DB:
             print('Name is not exist')
 
     def import_DB(self, name):
-        path = os.path.join('./laba_inf_tex/',name)
+        self.name = name
+        path = os.path.join('DBs/',name)
         with open(path,'r') as file:
             data = json.load(file)
             keys = data['tables']
@@ -32,11 +33,12 @@ class DB:
                     tables_[-1].add_record(record.content)
                 self.add_table(tables_[-1])
             print('Imported')
+        return data
 
 
 
     def export_DB(self, name):
-        path = os.path.join('./laba_inf_tex/', name)
+        path = os.path.join('DBs/', name)
         print(path)
         with open(path,'w') as file:
             data={}
@@ -48,7 +50,7 @@ class DB:
                 data['tables'][table]['records']=self.tables[table].records
 
             json_data=json.dump(data,file,indent=4)
-            print('Exported')
+            return ('Exported\n')
 
     def diff_of_tables(self, name1, name2):
         print('Columns: ', self.tables[name1].columns)
@@ -64,7 +66,7 @@ class DB:
             #rec1=set(tuple([rec for rec in self.tables[name1].records]))
             #rec2=set(tuple([rec for rec in self.tables[name2].records]))
             print('Diff:\n',rec1-rec2)
-            return rec1-rec2
+            return list(rec1-rec2)
 
     def union_of_tables(self, name1, name2):
         if [col_name for col_name in self.tables[name1].columns if col_name not in self.tables[name2].columns]:
@@ -76,10 +78,10 @@ class DB:
                 rec1.add(tuple(rec_1))
                 rec2.add(tuple(rec_2))
             print('Union:\n ', rec1|rec2)
-        return rec1|rec2
+        return list(rec1|rec2)
 
 class Table:
-    def __init__(self, name_,columns_=None):
+    def __init__(self, name_=None,columns_=None):
         self.name = name_
         self.columns = columns_
         self.records=list()
@@ -162,7 +164,7 @@ class Table:
          self.records[index[0]].edit_cell(index[1], content)
 
 class Record:
-    def __init__(self, content_):
+    def __init__(self, content_=None):
         self.content = content_
 
     def edit_cell(self, index, content_):
@@ -175,8 +177,10 @@ if __name__ == '__main__':
     event = input('what do u need?\n 1. import DB\n 2. create DB\n 3. delete DB\n Answer: ')
     if event != '3':
         name = input('Name of DB (*json): ')
+
         database_=DB(name)
         if event == '1':
+            print(name)
             database_.import_DB(name)
             print(database_.name)
         if event == '2':

@@ -1,0 +1,35 @@
+main {
+    display: flex;
+}
+
+aside{ 
+    width: 50%;
+    margin: 10 auto;
+    background: blue;
+}
+
+button {
+    display: block;
+    width: 30%;
+    background: none;
+    padding: 20px;
+    border-radius: 10px;
+    border: 0;
+    background: white;
+    color: blue;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+select,option,input {
+    display: block;
+    width: 30%;
+    background: none;
+    padding: 20px;
+    border-radius: 10px;
+    border: 4px solid white;
+    background: blue;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}

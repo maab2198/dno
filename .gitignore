@@ -1,0 +1,5 @@
+./venv
+./node_modules
+./__pycache__
+./flask_DB.pyc
+./DB__main.pyc
