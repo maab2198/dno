@@ -9,7 +9,7 @@ app = Flask(__name__)
 api = Api(app)
 dbs = {}
 
-for name in os.listdir('DBs/'):
+for name in os.listdir('datasource/'):
     db = DB_main.DB()
     db.import_DB(name)
     dbs[name] = db
@@ -28,7 +28,7 @@ def get_DBs():
 
 @app.route('/laba_inf_tex/api/v1.0/import_DB/<name>', methods=['GET'])
 def import_DB(name):
-    path = os.path.join('DBs/', name)
+    path = os.path.join('datasource/', name)
     exists = os.path.isfile(path)
     #return jsonify({path:exists})
     if exists:
@@ -69,7 +69,7 @@ def union_of_tables(source):
 @app.route('/laba_inf_tex/api/v1.0/export_DB/<name>', methods=['GET'])
 def export_DB(name):
     print(name)
-    path = os.path.join('DBs/', name)
+    path = os.path.join('datasource/', name)
     exists = os.path.isfile(path)
     if exists:
         return (db.export_DB(name))
@@ -77,7 +77,7 @@ def export_DB(name):
 
 @app.route('/laba_inf_tex/api/v1.0/delete_BD/<name>', methods=['DELETE'])
 def delete_BD(name):
-    path = os.path.join('DBs/', name)
+    path = os.path.join('datasource/', name)
     exists = os.path.isfile(path)
     if exists:
         del dbs[name]

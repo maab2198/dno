@@ -13,18 +13,18 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 // const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 
 module.exports = {
-    entry: './project/src/index.js',
+    entry: './src/index.js',
    // watch: true,
     devServer: {
        host: 'localhost',
        port: '3000',
       // watchContentBase: true,
       // compress: true,
-      contentBase: './dist',
+      contentBase: './build',
       //watchContentBase: true
     },
     output: {
-      path: __dirname + '/dist',
+      path: __dirname + '/build',
       publicPath: '/',
       filename: 'bundle.js'
     },
@@ -40,7 +40,7 @@ module.exports = {
             loader: require.resolve('url-loader'),
             options: {
               limit: 10000,
-              name: './project/static/media/[name].[hash:8].[ext]',
+              name: './static/media/[name].[hash:8].[ext]',
             },
           },
           {
@@ -75,7 +75,7 @@ module.exports = {
             , use: {
               loader: 'file-loader'
               , options: {
-                name: './project/static/fonts/[name].[hash:8].[ext]',
+                name: './static/fonts/[name].[hash:8].[ext]',
               }
             }
           }
@@ -84,7 +84,7 @@ module.exports = {
           //   exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/],
           //   loader: require.resolve('file-loader'),
           //   options: {
-          //     name: './project/static/media/[name].[hash:8].[ext]',
+          //     name: './static/media/[name].[hash:8].[ext]',
           //     attrs: ['img:src', 'link:href'], 
           //   },
           // },
@@ -97,14 +97,14 @@ module.exports = {
       
       new HtmlWebpackPlugin({
         inject: true,
-        template: "./project/index.html"
+        template: "./index.html"
       }),
       // new webpack.HotModuleReplacementPlugin(),
       new LiveReloadPlugin()
       //  new BrowserSyncPlugin({
       //   host: 'localhost',
       //   port: 3000,
-      //   server: { baseDir: ['./dist'] }
+      //   server: { baseDir: ['./build'] }
       // })
     ]
 

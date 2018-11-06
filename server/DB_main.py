@@ -19,7 +19,7 @@ class DB:
 
     def import_DB(self, name):
         self.name = name
-        path = os.path.join('DBs/',name)
+        path = os.path.join('datasource/',name)
         with open(path,'r') as file:
             data = json.load(file)
             keys = data['tables']
@@ -38,7 +38,7 @@ class DB:
 
 
     def export_DB(self, name):
-        path = os.path.join('DBs/', name)
+        path = os.path.join('datasource/', name)
         print(path)
         with open(path,'w') as file:
             data={}

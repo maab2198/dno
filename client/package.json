@@ -2,7 +2,7 @@
   "name": "it",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/index.js",
   "dependencies": {
     "axios": "^0.18.0",
     "react": "^16.6.0",
@@ -47,5 +47,6 @@
     "serve": "webpack-dev-server -d --open"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "proxy":"http://server:8000"
 }

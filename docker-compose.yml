@@ -1,0 +1,31 @@
+version: '3'
+services:
+  server:
+    container_name: server
+    image: server
+    build: ./server
+    expose:
+      - 8000
+    ports:
+      - "8000:8000"
+    environment:
+      FLASK_APP: index.py
+      FLASK_ENV: development
+    command: 
+      flask run
+
+  client:
+    container_name: client
+    image: client
+    build: ./client
+    expose:
+      - 4000
+    ports: 
+      - "4000:4000"
+    volumes:
+      - "./client/src:/client/src"
+      - "./client/build:/cliet/build"
+    links:
+      - server
+    # command:
+    #   npm run start
