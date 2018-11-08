@@ -5,4 +5,8 @@ WORKDIR /server
 
 RUN pip install -r requirements.txt
 COPY . /server
-CMD ["flask", "index.py"]
+
+ENV FLASK_APP index.py
+ENV FLASK_ENV development
+EXPOSE  80
+# CMD ["python","index.py"]

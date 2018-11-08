@@ -1,4 +1,4 @@
-from flanker.addresslib import address
+#from flanker.addresslib import address
 import os
 import json
 
@@ -106,11 +106,11 @@ class Table:
             else:
                 print('Incorrect data')
         return self.records
-
+    #Flanker
     def check_for_email(self, content):
-        if address.parse(content) != None:
-            return True
-        return False
+        # if address.parse(content) != None:
+        #     return True
+        return True #False
 
     def check_for_enum(self, content, enum_data):
         if content in enum_data:
