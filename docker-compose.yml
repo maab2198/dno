@@ -4,13 +4,15 @@ services:
     container_name: server
     image: server
     build: ./server
+    ports:
+      - "8000:80"
     expose:
       - 8000
-    ports:
-      - "8000:8000"
     environment:
       FLASK_APP: index.py
       FLASK_ENV: development
+    volumes:
+      - "./server:/it"
     command: 
       flask run
 
