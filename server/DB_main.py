@@ -39,7 +39,6 @@ class DB:
 
     def export_DB(self, name):
         path = os.path.join('datasource/', name)
-        print(path)
         with open(path,'w') as file:
             data={}
             data['database']=name

@@ -7,24 +7,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
-// const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-// const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
-// const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
-// const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
-
 module.exports = {
-    entry: './src/index.js',
-   // watch: true,
+    entry: './project/src/index.js',
     devServer: {
-       host: 'localhost',
-       port: '3000',
-      // watchContentBase: true,
-      // compress: true,
-      contentBase: './build',
-      //watchContentBase: true
+      host: 'localhost',
+      port: '3000',
+      contentBase: './dist',
     },
     output: {
-      path: __dirname + '/build',
+      path: __dirname + '/dist',
       publicPath: '/',
       filename: 'bundle.js'
     },
@@ -40,7 +31,7 @@ module.exports = {
             loader: require.resolve('url-loader'),
             options: {
               limit: 10000,
-              name: './static/media/[name].[hash:8].[ext]',
+              name: './project/static/media/[name].[hash:8].[ext]',
             },
           },
           {
@@ -75,19 +66,11 @@ module.exports = {
             , use: {
               loader: 'file-loader'
               , options: {
-                name: './static/fonts/[name].[hash:8].[ext]',
+                name: './project/static/fonts/[name].[hash:8].[ext]',
               }
             }
           }
-          
-          // , {
-          //   exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/],
-          //   loader: require.resolve('file-loader'),
-          //   options: {
-          //     name: './static/media/[name].[hash:8].[ext]',
-          //     attrs: ['img:src', 'link:href'], 
-          //   },
-          // },
+        
         ]
       },
       resolve: {
@@ -97,15 +80,9 @@ module.exports = {
       
       new HtmlWebpackPlugin({
         inject: true,
-        template: "./index.html"
+        template: "./project/index.html"
       }),
-      // new webpack.HotModuleReplacementPlugin(),
       new LiveReloadPlugin()
-      //  new BrowserSyncPlugin({
-      //   host: 'localhost',
-      //   port: 3000,
-      //   server: { baseDir: ['./build'] }
-      // })
     ]
 
 

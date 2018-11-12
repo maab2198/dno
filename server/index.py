@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 from flask import Flask, jsonify, abort, make_response, request
 from flask_cors import CORS
-from flask_restful import Api
+# from flask_restful import Api
 import DB_main
 import os
 
 app = Flask(__name__)
-api = Api(app)
+# api = Api(app)
 dbs = {}
 
 for name in os.listdir('datasource/'):
@@ -54,16 +54,13 @@ def diff_of_tables(source):
 	"names" : ["",""]
 }
 '''
-@app.route('/laba_inf_tex/api/v1.0/<source>/union_of_tables', methods=['POST'])
-def union_of_tables(source):
+@app.route('/laba_inf_tex/api/v1.0/<source>/union_of_tables/<name_0>/<name_1>', methods=['POST'])
+def union_of_tables(source,name_0,name_1):
     if source not in dbs:
         abort(404)
     db = dbs[source]
-    if not request.json or not 'names' in request.json:
-        abort(400)
-    names = request.json['names']
-    if names[0] and names[1] in db.tables:
-        return jsonify({'records': db.union_of_tables(names[0], names[1])})
+    if name_0 and name_1 in db.tables:
+        return jsonify({'records': db.union_of_tables(name_0, name_1)})
     abort(404)
 
 @app.route('/laba_inf_tex/api/v1.0/export_DB/<name>', methods=['GET'])
@@ -75,7 +72,21 @@ def export_DB(name):
         return (db.export_DB(name))
     abort(404)
 
-@app.route('/laba_inf_tex/api/v1.0/delete_BD/<name>', methods=['DELETE'])
+@app.route('/laba_inf_tex/api/v1.0/create_DB/<name>', methods=['POST'])
+def create_DB(name):
+    #dbs[name] = DB_main.DB(name)
+    db = dbs[name]
+    return db
+    #db.export_DB(name)
+    #return jsonify({db})
+    #return 201
+
+'''{
+	"table":"",
+	"id":""
+}'''
+
+@app.route('/laba_inf_tex/api/v1.0/delete_DB/<name>', methods=['DELETE'])
 def delete_BD(name):
     path = os.path.join('datasource/', name)
     exists = os.path.isfile(path)
@@ -108,26 +119,14 @@ def get_table(source, name):
     return jsonify({'table': {'name': t.name,'columns':t.columns,'records': t.records}})
 
 
-@app.route('/laba_inf_tex/api/v1.0/create_DB/<name>', methods=['GET'])
-def create_DB(name):
-    dbs[name] = DB_main.DB(name)
-    db = dbs[name]
-    export_DB(db.name)
-    return jsonify({name})
-    #return 201
 
-'''{
-	"table":"",
-	"id":""
-}
-'''
-@app.route('/laba_inf_tex/api/v1.0/<source>/delete_record', methods=['DELETE'])
-def delete_record(source):
+@app.route('/laba_inf_tex/api/v1.0/<source>/delete_record/<table>/<id>', methods=['DELETE'])
+def delete_record(source,table,id):
     if source not in dbs:
         abort(404)
     db = dbs[source]
-    id = request.json['id']
-    table = request.json['table']
+    # id = request.json['id']
+    # table = request.json['table']
     if table not in db.tables :
         abort(404)
     t = db.tables[table]
