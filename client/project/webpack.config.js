@@ -7,21 +7,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
-// const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-// const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
-// const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
-// const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
-
 module.exports = {
     entry: './project/src/index.js',
-   // watch: true,
     devServer: {
-       host: 'localhost',
-       port: '3000',
-      // watchContentBase: true,
-      // compress: true,
+      host: 'localhost',
+      port: '3000',
       contentBase: './dist',
-      //watchContentBase: true
     },
     output: {
       path: __dirname + '/dist',
@@ -91,13 +82,7 @@ module.exports = {
         inject: true,
         template: "./project/index.html"
       }),
-      // new webpack.HotModuleReplacementPlugin(),
       new LiveReloadPlugin()
-      //  new BrowserSyncPlugin({
-      //   host: 'localhost',
-      //   port: 3000,
-      //   server: { baseDir: ['./dist'] }
-      // })
     ]
 
 
