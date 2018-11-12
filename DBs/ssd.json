@@ -16,30 +16,6 @@
                 "email"
             ]
         }, 
-        "tab8": {
-            "records": [], 
-            "columns": [
-                "int", 
-                "int", 
-                "str"
-            ]
-        }, 
-        "tab6": {
-            "records": [], 
-            "columns": [
-                "int", 
-                "int", 
-                "str"
-            ]
-        }, 
-        "tab5": {
-            "records": [], 
-            "columns": [
-                "int", 
-                "int", 
-                "str"
-            ]
-        }, 
         "tab4": {
             "records": [], 
             "columns": [

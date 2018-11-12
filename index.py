@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 from flask import Flask, jsonify, abort, make_response, request
 from flask_cors import CORS
-from flask_restful import Api
+# from flask_restful import Api
 import DB_main
 import os
 
 app = Flask(__name__)
-api = Api(app)
+# api = Api(app)
 dbs = {}
 
 for name in os.listdir('DBs/'):
@@ -68,14 +68,27 @@ def union_of_tables(source):
 
 @app.route('/laba_inf_tex/api/v1.0/export_DB/<name>', methods=['GET'])
 def export_DB(name):
-    print(name)
     path = os.path.join('DBs/', name)
     exists = os.path.isfile(path)
     if exists:
         return (db.export_DB(name))
     abort(404)
 
-@app.route('/laba_inf_tex/api/v1.0/delete_BD/<name>', methods=['DELETE'])
+@app.route('/laba_inf_tex/api/v1.0/create_DB/<name>', methods=['POST'])
+def create_DB(name):
+    #dbs[name] = DB_main.DB(name)
+    db = dbs[name]
+    return db
+    #db.export_DB(name)
+    #return jsonify({db})
+    #return 201
+
+'''{
+	"table":"",
+	"id":""
+}'''
+
+@app.route('/laba_inf_tex/api/v1.0/delete_DB/<name>', methods=['DELETE'])
 def delete_BD(name):
     path = os.path.join('DBs/', name)
     exists = os.path.isfile(path)
@@ -108,26 +121,14 @@ def get_table(source, name):
     return jsonify({'table': {'name': t.name,'columns':t.columns,'records': t.records}})
 
 
-@app.route('/laba_inf_tex/api/v1.0/create_DB/<name>', methods=['GET'])
-def create_DB(name):
-    dbs[name] = DB_main.DB(name)
-    db = dbs[name]
-    export_DB(db.name)
-    return jsonify({name})
-    #return 201
 
-'''{
-	"table":"",
-	"id":""
-}
-'''
-@app.route('/laba_inf_tex/api/v1.0/<source>/delete_record', methods=['DELETE'])
-def delete_record(source):
+@app.route('/laba_inf_tex/api/v1.0/<source>/delete_record/<table>/<id>', methods=['DELETE'])
+def delete_record(source,table,id):
     if source not in dbs:
         abort(404)
     db = dbs[source]
-    id = request.json['id']
-    table = request.json['table']
+    # id = request.json['id']
+    # table = request.json['table']
     if table not in db.tables :
         abort(404)
     t = db.tables[table]

@@ -79,15 +79,7 @@ module.exports = {
               }
             }
           }
-          
-          // , {
-          //   exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/],
-          //   loader: require.resolve('file-loader'),
-          //   options: {
-          //     name: './project/static/media/[name].[hash:8].[ext]',
-          //     attrs: ['img:src', 'link:href'], 
-          //   },
-          // },
+        
         ]
       },
       resolve: {

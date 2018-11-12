@@ -1,0 +1,35 @@
+{
+    "tables": {
+        "tab3": {
+            "records": [], 
+            "columns": [
+                "int", 
+                "email"
+            ]
+        }, 
+        "tab6": {
+            "records": [], 
+            "columns": [
+                "int", 
+                "int", 
+                "str"
+            ]
+        }, 
+        "tab5": {
+            "records": [], 
+            "columns": [
+                "int", 
+                "int", 
+                "str"
+            ]
+        }, 
+        "tab4": {
+            "records": [], 
+            "columns": [
+                "int", 
+                "double"
+            ]
+        }
+    }, 
+    "database": "1.json"
+}
