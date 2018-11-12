@@ -54,16 +54,13 @@ def diff_of_tables(source):
 	"names" : ["",""]
 }
 '''
-@app.route('/laba_inf_tex/api/v1.0/<source>/union_of_tables', methods=['POST'])
-def union_of_tables(source):
+@app.route('/laba_inf_tex/api/v1.0/<source>/union_of_tables/<name_0>/<name_1>', methods=['POST'])
+def union_of_tables(source,name_0,name_1):
     if source not in dbs:
         abort(404)
     db = dbs[source]
-    if not request.json or not 'names' in request.json:
-        abort(400)
-    names = request.json['names']
-    if names[0] and names[1] in db.tables:
-        return jsonify({'records': db.union_of_tables(names[0], names[1])})
+    if name_0 and name_1 in db.tables:
+        return jsonify({'records': db.union_of_tables(name_0, name_1)})
     abort(404)
 
 @app.route('/laba_inf_tex/api/v1.0/export_DB/<name>', methods=['GET'])
