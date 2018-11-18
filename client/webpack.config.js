@@ -10,7 +10,7 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 module.exports = {
     entry: './project/src/index.js',
     devServer: {
-      host: 'localhost',
+      host: '0.0.0.0',
       port: '3000',
       contentBase: './dist',
     },

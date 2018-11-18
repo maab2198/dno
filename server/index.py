@@ -14,7 +14,7 @@ for name in os.listdir('datasource/'):
     db.import_DB(name)
     dbs[name] = db
 
-CORS(app, origins="http://localhost:3000", allow_headers=[
+CORS(app, origins="0.0.0.0:3000", allow_headers=[
     "Content-Type", "Authorization", "Access-Control-Allow-Credentials", "Access-Control-Allow-Headers","Access-Control-Allow-Origin"],
     supports_credentials=True, intercept_exceptions=False)
 
@@ -192,4 +192,4 @@ def edit_record(source):
     return jsonify({'result':t.records})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    app.run(debug=True, host='0.0.0.0', port ="80")
