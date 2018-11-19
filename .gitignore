@@ -4,3 +4,5 @@
 /server/index.pyc
 /server/DB_main.pyc
 npm-debug.log
+/mobile/node_modules
+/mobile/.expo

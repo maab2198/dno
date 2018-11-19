@@ -14,7 +14,7 @@ for name in os.listdir('datasource/'):
     db.import_DB(name)
     dbs[name] = db
 
-CORS(app, origins="0.0.0.0:3000", allow_headers=[
+CORS(app, origins="*", allow_headers=[
     "Content-Type", "Authorization", "Access-Control-Allow-Credentials", "Access-Control-Allow-Headers","Access-Control-Allow-Origin"],
     supports_credentials=True, intercept_exceptions=False)
 

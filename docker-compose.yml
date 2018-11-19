@@ -16,18 +16,18 @@ services:
     command: 
       flask run --host=0.0.0.0 --port=80
 
-  client:
-    container_name: client
-    image: client
-    build: ./client
-    expose:
-      - 3000
-    ports: 
-      - "3000:3000"
-    # volumes:
-    #   - "./client/src:/client/src"
-    #   - "./client/build:/client/build"
-    links:
-      - server
-    command:
-      npm run start
+  # client:
+  #   container_name: client
+  #   image: client
+  #   build: ./client
+  #   expose:
+  #     - 3000
+  #   ports: 
+  #     - "3000:3000"
+  #   # volumes:
+  #   #   - "./client/src:/client/src"
+  #   #   - "./client/build:/client/build"
+  #   links:
+  #     - server
+  #   command:
+  #     npm run start
