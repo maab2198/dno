@@ -46,7 +46,7 @@ export default class SettingsScreen extends React.Component {
  }
 
  selectLoad() {
-  fetch('http://192.168.31.164:8000/laba_inf_tex/api/v1.0/get_DBs')
+  fetch('http://10.1.0.234:8000/laba_inf_tex/api/v1.0/get_DBs')
       .then(response => {return response.json()})
       .then(data => this.setState({list : data["DB"]}))
       .then(() => this.setState({
@@ -64,7 +64,7 @@ export default class SettingsScreen extends React.Component {
 
   importClick(e) {
     this.setState({tech: e})
-    fetch("http://192.168.31.164:8000/laba_inf_tex/api/v1.0/import_DB/" + this.state.tech)
+    fetch("http://10.1.0.234:8000/laba_inf_tex/api/v1.0/import_DB/" + this.state.tech)
     .then(response => {return response.json()})
       .then((data) => {
      
@@ -78,7 +78,7 @@ export default class SettingsScreen extends React.Component {
 
   deleteClick() {
    
-     fetch("http://192.168.31.164:8000/laba_inf_tex/api/v1.0/delete_DB/" + this.state.tech,{
+     fetch("http://10.1.0.234:8000/laba_inf_tex/api/v1.0/delete_DB/" + this.state.tech,{
       method:'delete'
     })
     .then(()=> this.selectLoad())
